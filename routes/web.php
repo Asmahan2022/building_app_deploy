@@ -33,4 +33,4 @@ Route::get('custom/login/{id}','CustomAuthController@CustomLogin');
 
 Route::get('issues/list','IssuesController@list');
 
-//Route::get('users','UsersController@export');
+Route::get('users','UsersController@export');
