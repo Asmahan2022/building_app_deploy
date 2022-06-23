@@ -33,4 +33,10 @@ Route::get('custom/login/{id}','CustomAuthController@CustomLogin');
 
 Route::get('issues/list','IssuesController@list');
 
+Route::post('issues/import','IssuesController@importFromExcel');
+Route::view('issue-form','excel-import');
+
+
 Route::get('users','UsersController@export');
+
+

@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Imports\IssuesImport;
 Use App\Issue;
 use App\User;
 use App\Mail\IssuRequestSubmitted;
 use Attribute;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Auth;
 use Facade\FlareClient\View;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
@@ -48,5 +50,15 @@ class IssuesController extends Controller
     public function test()
     {
         return"This is a test function";
+    }
+
+    public function importFromExcel(Request $request)
+    {
+
+$request->validate([
+    'file'=>'required|mimes:xlsx'
+]);
+        Excel::import(new IssuesImport, $request->excelFile);
+        return "Data imported successfully";
     }
 }
